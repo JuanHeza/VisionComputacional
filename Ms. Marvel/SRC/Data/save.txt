@@ -1,0 +1,54 @@
+matriz original                             :   J   M          |    Colorful.go     ¬
+matriz de salida                            :   J   M          |    Grey.go         ¬
+aclarado                                    :   J       A      |    Light.go        ¬
+oscurecimiento                              :   J   M          |    Light.go        ¬
+copiado                                     :   J   M   A      |    Miror.go        ¬
+negativo                                    :   J   M   A      |    Nega.go         ¬
+elngacion de contraste                      :           A      |    
+reduccion de contraste                      :           A      |    
+brillo +                                    :   J              |    Light.go        ¬
+brillo -                                    :   J              |    Light.go        ¬
+normalizaciion + {err = if pixel > 255}     :       M          |    
+normalizacion - {err = if pixel < 0 }       :       M          |    
+shifting horizontal                         :   J              |    Shift.go        ¬
+shifting vertical                           :   J              |    Shift.go        ¬
+shifting diagonal                           :   J              |    Shift.go        ¬
+umbral  2                                   :   J   M   A      |    Bin2.go         ¬
+umbral  3                                   :   J              |    Bin3.go         ¬
+umbral  4                                   :   J              |    Bin4.go         ¬
+umbral  6                                   :   J              |    Bin6.go         ¬
+umbral  8                                   :   J              |    Bin8.go         ¬
+umbral 12                                   :   J              |    Bin12.go        ¬    
+umbral 16                                   :   J              |    Bin16.go        ¬
+filtro de mediana                           :            A     |    
+mediana trunca                              :            A     |    
+filtro Modal                                :            A     |    
+filtro doblez de rango                      :                  |    
+eliminacion sal y pimienta                  :            A     |    
+umbral adaptativo 2                         :                  |    
+umbral varianza                             :                  |    
+umbral entropia                             :                  |    
+umbral maxima probabilidad                  :                  |    
+umbral valle global                         :                  |    
+33*3 = 100 pt   
+generar imagenes con codigo "OUT"+#*.jpg    :   J              |    GetFiles.go     ¬
+
+Dummy Files
+    Blamic.go
+    Ron.go
+    Z-626.go
+    B1.go
+    B2.go
+    B3.go
+
+https://godoc.org/github.com/google/gxui#Control
+http://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-4-brightness-adjustment/
+https://github.com/lucasb-eyer/go-colorful/blob/master/colors.go
+
+
+layout1 := theme.CreateLinearLayout()
+	img1 := theme.CreateImage()
+	img2 := theme.CreateImage()
+	img3 := theme.CreateImage()
+	labelO := theme.CreateLabel()
+	labelN := theme.CreateLabel()

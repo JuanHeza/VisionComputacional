@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<title>RACOON</title>
+<head>
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+{{with  $0:=.Evaluados}}
+<meta http-equiv="refresh" content="1" />
+{{end}}<!--//$0-->
+<style>
+table, th, td {
+    border: 1px solid rgb(255, 0, 0);
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<center>
+{{with $1:=.PageRadioButtons}}
+  <p> Which do you prefer</p>
+
+    <form action="/Gen" method="post">
+         {{range $1}}
+           <br><input type="radio" name={{.Name}} value={{.Value}} {{if .IsDisabled}} disabled=true {{end}} {{if .IsChecked}}checked{{end}}> {{.Text}}{{end}}<!--//R$1-->
+{{end}}<!--//$1-->
+{{with $2:=.DropDownMenu}}
+		 <select name="Cant">
+			{{range $2}}
+			<option value={{.Value}}>{{.Text}}</option>	{{end}}<!--//R$2-->
+		</select>
+		<br><input type="submit" value="Listo"/>
+    </form>
+{{end}}<!--//$2-->
+{{with  $4:=.Id}}
+<table style="width:25%">
+  <tr>
+    <th colspan="2">Generacion {{$4}}</th>
+  </tr>
+{{end}}<!--//$4-->
+{{with  $3:=.Evaluados}}
+  <tr>
+    <th>Gen</th>
+    <th>Valor</th> 
+  </tr>{{range $3}}
+  <tr>
+    <td>{{.Vias}}</td><td>{{.Valor}}</td>
+  </tr>{{end}}<!--//R$3-->
+  <tr>
+{{end}}<!--//$3-->
+{{with  $5:=.Generacion}}
+    <th>Valor Generacion</th> <td>{{.}}</td>
+  </tr>
+</table> 
+<form action="/" method="post">
+  <br><input type="radio" name=Max value=-999 hidden=true> 
+  <input type="radio" name=Generacion value=1 hidden=true> 
+<br><input type="submit" value="Break"/>
+</form>
+{{end}}<!--//$5-->
+</body>
+</html>

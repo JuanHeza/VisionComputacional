@@ -1,0 +1,6 @@
+﻿
+https://godoc.org/github.com/google/gxui#Control
+http://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-4-brightness-adjustment/
+https://github.com/lucasb-eyer/go-colorful/blob/master/colors.go
+
+ransac & hough

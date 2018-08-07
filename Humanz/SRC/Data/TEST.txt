@@ -1,0 +1,49 @@
+
+package main
+
+import "fmt"
+import "log"
+
+var Max = 5
+var BEEP,X,END chan int
+var Matriz = [][]int {
+	{135, 132, 128, 126, 121, 117},
+	{130, 128, 125, 122, 118, 115},
+	{126, 124, 122, 119, 116, 113},
+	{121, 120, 16, 115, 114, 110},
+}
+
+func main(){
+	log.Println("HI")
+	END = make(chan int, 1)
+	X = make(chan int, 100)
+    for i,XP := range Matriz{
+		for j,Y := range XP{
+			fmt.Println("j",j,"Y",Y)
+			X <- i+j
+		}
+	}
+	Conteo()
+	Mark(&END)
+	log.Println("BYE")
+}
+
+func Conteo ( ) {
+	BEEP = make(chan int, 4)
+	for len(X) > 0{ 
+		go func(){
+			BEEP <- 1
+			fmt.Println(<-X)
+			<- BEEP
+		}()
+	}
+	Mark(&END)
+}
+
+func Mark(Data *chan int){
+	if len(*Data)==cap(*Data){
+		<- *Data
+	}else{
+		*Data <- 0
+	}
+}

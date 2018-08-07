@@ -1,0 +1,129 @@
+Notes
+SHIFTING
+    shifting puede ser vertical, horizontal & vertical
+
+    70  65  60  57
+    74  70  66  62
+    78  73  67  63
+    80  75  72  70
+
+    S-horizontal ->
+    70  65/70   60/65   57/60
+
+    S-horizontal <-
+    70  70/65   65/60   60/57
+
+    vertical mas de lo mismo
+
+FILTROS
+    paso bajo 
+    dominio del espacio y dominio de frecuencia
+        multiplicador
+        convolucion
+
+Suavizado / Desenfoque Gaussiano
+
+Filtro de Mediana
+    como el codigo de la cabra, toma una region y usa la mediana (ordena de menor a mayor y los iguala al centro de la lista)
+
+Filtro Modal
+    similar pero con moda
+
+usar los filtros para "reducir la imagen"
+
+METODOS DE SEGMENTACION
+SIMILITUDES
+135 132 128 126 121 117
+130 128 125 122 118 115
+126 124 122 119 116 113
+121 120 116 115 114 110
+
+AI = 10
+135 132 128 126     121 117
+130 128     125 122 118 115
+126     124 122 119 116 113
+    121 120 116 115 114     110
+
+Punto inicial 135
+Vecindarios = 135 - AI -> 135 -> 135 + AI
+Vecindarios = Punto inicial - AI -> Punto inicial -> Punto inicial + AI
+pixeles no pueden ser de 2 vecindarios
+
+DISCONTINUIDAD
+diferencia vertical
+3   4   2   5   4
+2   3   3   4   3
+2   2   3   3   3
+1   5   1   1   4
+
+diferencia vertical 2
+-1  2   -3  -1
+-1  0   -1  -1
+0   -1  0   0
+4   -4  0   -3
+
+diferencia vertical 2 
+AI <= |2|
+-1   2      -1           -3  
+-1   0  -1  -1
+ 0  -1   0   0
+         0          -3          4   -4
+
+         4 vecindarios
+
+diferencia horizontal
+5   4   3   4   3   2
+4   4   3   3   2   3
+5   4   6   4   2   3
+
+diferencia horizontal 2
+1   0   0   1   1   -1
+-1  0   -3  -1  0   0   
+
+diferencia horizontal 2
+ 1  0    0   1  1  -1
+-1  0       -1  0   0    -3
+
+        2 Vecindarios
+
+
+9 de abril avance del PIA
+
+176 186 170 175 177 182
+183 177 184 188 192 186
+187 190 193 185 180 198
+192 199 205 209 196 212
+197 203 180 194 205 208
+
+10 = AI     176 = V1    188 = V2    199 = V3    180 = V4    212 = V5
+
+176 186 170 175 177 182
+183 177 184         186                 188 192 
+                            187 190 193 185 180 198
+                            192             196         199 205 209                         212
+                            197                         203     194 205 208      180
+Matriz de Vecindarios
+1   1   1   1   1   1
+1   1   1   2   2   1
+2   2   2   2   2   2
+2   3   3   3   2   4
+2   3   5   3   3   3
+
+Habilitado en 3 vecindad / toda la imagen sera analizada
+
+Metodo de Ransac
+
+	Mmax = 0
+	for all pairs of edge points do{
+		find equation of line defined by two points i,j
+		M=0
+		for all N points in list do
+			if(point K is whitin threshold distance d of line) M++
+		if(M>Mmax)
+			Mmax=M
+			imax=i
+			jmax=j
+			//this records the hipotesis givinf the maximun support so far
+	/*if MMax>0(x[imax],y[imax]) &(x[jmax],y[imax]) will be the coordinates of the ponts defiring the line heaving greatest support*/
+
+transformada de hough
